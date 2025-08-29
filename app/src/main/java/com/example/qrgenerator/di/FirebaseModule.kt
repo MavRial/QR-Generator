@@ -1,7 +1,5 @@
 package com.example.qrgenerator.di
 
-import com.example.qrgenerator.data.repository.QrRepositoryImpl
-import com.example.qrgenerator.domain.repository.QrRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
@@ -11,10 +9,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideQrRepository(firestore: FirebaseFirestore): QrRepository =
-        QrRepositoryImpl(firestore)
+    fun provideFirebaseFireStore(): FirebaseFirestore =
+        FirebaseFirestore.getInstance()
 }

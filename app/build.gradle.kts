@@ -1,9 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application) // Android App
-    alias(libs.plugins.kotlin.android)      // Kotlin Android
-    alias(libs.plugins.kotlin.compose)      // Jetpack Compose
-    alias(libs.plugins.hilt.android)        // Hilt DI
-    kotlin("kapt")                          // Annotation Processor
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    kotlin("plugin.compose") version "2.0.0"
+    alias(libs.plugins.hilt.android)
+    kotlin("kapt")
+}
+
+kapt {
+    useBuildCache = true
+    correctErrorTypes = true
+    javacOptions {
+        option("-Xlanguage-version", "2.1")
+    }
 }
 
 android {
@@ -29,55 +37,57 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = "17"
     }
+
     buildFeatures {
         compose = true
     }
+
 }
 
 dependencies {
-    // === CORE / KOTLIN ===
+    // CORE / KOTLIN
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    // === JETPACK COMPOSE ===
-    implementation(libs.androidx.activity.compose)
+    // COMPOSE
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-
-    // === MATERIAL DESIGN ===
     implementation(libs.androidx.material3)
 
-    // === NAVIGATION COMPOSE ===
+    // NAVIGATION COMPOSE
     implementation(libs.androidx.navigation.compose)
 
-    // === COROUTINES ===
+    // COROUTINES
     implementation(libs.kotlinx.coroutines.android)
 
-    // === HILT / DI ===
+    // HILT / DI
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
 
-    // === TESTING ===
+    // TESTING
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
-    // === DEBUG / TOOLING ===
+    // DEBUG / TOOLING
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // === MOCKING ===
+    // MOCKING
     testImplementation(libs.mockk)
 }

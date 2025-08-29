@@ -1,0 +1,34 @@
+package com.example.qrgenerator.presentation.screens.generator
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+
+
+@Composable
+fun QrScreen(
+    modifier: Modifier = Modifier,
+    viewModel: QrViewModel = hiltViewModel()
+) {
+    val qr = viewModel.qrState.collectAsState().value
+
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = qr?.url ?: "Loading QR..."
+        )
+    }
+}

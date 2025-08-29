@@ -4,6 +4,7 @@ plugins {
     kotlin("plugin.compose") version "2.0.0"
     alias(libs.plugins.hilt.android)
     kotlin("kapt")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 kapt {
@@ -74,6 +75,7 @@ dependencies {
 
     // HILT / DI
     implementation(libs.hilt.android)
+    implementation(libs.firebase.firestore)
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
 

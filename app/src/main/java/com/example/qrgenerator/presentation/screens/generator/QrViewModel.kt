@@ -4,7 +4,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.qrgenerator.domain.model.QrDomain
 import com.example.qrgenerator.domain.usecase.GetQrByIdUseCase
 import com.example.qrgenerator.domain.usecase.UpdateRedirectUrlUseCase
 import com.example.qrgenerator.utils.helpers.QrHelper

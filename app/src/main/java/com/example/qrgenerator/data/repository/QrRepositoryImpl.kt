@@ -16,7 +16,7 @@ class QrRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore
 ) : QrRepository {
 
-    private val fixedQrId = "default_qr"
+
 
     override suspend fun getQrById(id: String): QrDomain {
         return suspendCoroutine { continuation ->
